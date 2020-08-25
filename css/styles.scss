@@ -1,0 +1,357 @@
+$base-color: #082B48;
+
+//マップ型変数breakpointsを定義
+$breakpoints: (
+//キー　　値
+ 'sm': 'screen and (max-width: 575px)',
+ 'md': 'screen and (max-width: 767px)',
+ 'lg': 'screen and (max-width: 991px)',
+ 'xl': 'screen and (max-width: 1199px)'
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォ値はmd
+@mixin mq($breakpoint: md) {
+//map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+body{
+  color: $base-color;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5;
+}
+
+.clear::after{
+  content:"";
+  clear: both;
+  display: block;
+
+ @include mq(md){
+   content: none;
+ }
+}
+
+
+
+img{
+  width: 100%;
+  height: auto;
+}
+
+a{
+  text-decoration: none;
+  color: $base-color;
+
+  &:hover{
+    opacity: .7;
+  }
+}
+
+.container{
+  width: 90%;
+  max-width: 980px;
+  margin: auto;
+}
+
+#page-top{
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  background-color: orange;
+  padding: 35px 20px;
+ }
+
+// header 
+
+header{
+  padding: 20px; 
+
+  .header-left{
+    float: left;
+    @include mq(md){
+      float: none;
+    }
+    .header-title{
+      font-weight: bold;
+      font-size: 20px;
+      @include mq(md){
+        text-align: center;
+      }
+    }
+  }
+  
+
+  .header-right{
+    float: right;
+    @include mq(md){
+      float: none;
+    }
+
+    .header-nav{
+      @include mq(md){
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .header-nav-item{
+      float: left;
+      margin-left: 50px;
+
+      @include mq(md){
+        float: none;
+        margin-left: 0;
+      }
+
+      dt{
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 36px;
+        cursor: pointer;
+        
+      }
+
+      dd{
+        display: none;
+        text-align: center;
+      }
+      a{
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 36px;
+
+      }
+    }
+  }
+
+}
+
+// header終了
+
+// top開始
+.top{
+  background-image: url(../img/main-vsual-nontitle.png);
+  background-size: cover;
+  padding: 80px 0;
+
+  @include mq(md){
+    padding: 120px 0;
+  }
+
+  .top-title{
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+
+    @include mq(md){
+      font-size: 32px;
+    }
+  }
+  .top-subtitle{
+    font-size: 18px;
+    text-align: center;
+  
+    @include mq(md){
+      font-size: 14px;
+
+    }
+  }
+}
+
+// top終了
+
+// section共通クラス開始
+.section{
+  padding: 60px 0;
+
+  @include mq(md){
+   padding: 80px 0;   
+  }
+
+  .section-title{
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+
+    @include mq(md){
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  p{
+    @include mq(md){
+      font-size: 14px;
+    }
+  }
+}
+
+
+
+// section共通クラス終了
+
+
+// about開始
+.about-left{
+  float: left;
+  width: 48%;
+
+  @include mq(md){
+    float: none;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+
+.about-right{
+  float: right;
+  width: 48%;
+
+  @include mq(md){
+   float: none;
+   width: 100%;   
+  }
+}
+
+
+// about終了
+
+
+// course開始
+.course{
+  background-color: #e3fcf4;
+
+  .course-wrapper{
+    display: flex;
+    justify-content: space-between;
+
+    @include mq(md){
+      flex-wrap: wrap;
+    }
+
+    .course-item{
+      width: 30%;
+
+      @include mq(md){
+      width: 100%;
+      margin-bottom: 20px;
+      }
+    }
+  }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0,0,0,.8);
+      display: none;
+
+      .bigimg{
+        position: absolute;
+        width: 80%;
+        max-width: 800px;
+        top: 30%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      
+       }
+       .close-btn{
+        color: #fff;
+        font-size: 40px;
+        position: absolute;
+        right: 20px;
+        top: 0;
+      }
+   
+  }
+}
+
+// course終了
+
+
+// contact開始
+
+.contact-message{
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+
+input[type="email"]{
+  width: 600px;
+  border: 3px solid #D8d8d8;
+  font-size: 18px;
+  display: block;
+  margin: auto;
+  padding: 15px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+
+  @include mq(md){
+   width: 100%;   
+  }
+}
+.btn{
+  padding: 20px 60px;
+  display: inline-block;
+  background-color: #082b48;
+  color:#fff;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+
+  &:hover{
+    opacity: .7;
+    cursor: pointer;
+  }
+}
+
+.btn-register{
+  background-color: #ec6d64;
+  display: block;
+  margin: auto;
+}
+
+
+// contact終了
+
+// footer開始
+footer{
+  background-color: $base-color;
+  color: white;
+  padding: 20px 0;
+
+  .copyright{
+    text-align: right;
+    font-style: 12px;
+
+    @include mq(md){
+      font-size: 10px;
+      float: none;
+      text-align: center;
+    }
+  }
+}
+
+
+// footer終了
+
+
+// jsに関するやつ開始
+
+
+// jsに関するやつ終了
+
+// レスポンシブ開始
+
+
+
+// レスポンシブ終了
